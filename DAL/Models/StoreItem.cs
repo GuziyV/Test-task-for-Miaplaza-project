@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    class StoreItem
+    public class StoreItem
     {
         public StoreItem(string name, decimal pricePerItem, int count = 0)
         {

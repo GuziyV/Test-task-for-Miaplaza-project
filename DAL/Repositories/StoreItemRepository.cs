@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    class StoreItemRepository : IRepository<StoreItem, string>
+    public class StoreItemRepository : IRepository<StoreItem, string>
     {
         private readonly List<StoreItem> storeItems;
 

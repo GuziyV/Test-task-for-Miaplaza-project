@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IRepository <TEntity, TIdentifier> where TEntity : class
+    public interface IRepository <TEntity, TIdentifier> where TEntity : class
     {
         TEntity CreateAsync(TEntity entity);
 
