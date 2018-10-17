@@ -10,6 +10,7 @@ namespace Test_task_for_Miaplaza_project
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

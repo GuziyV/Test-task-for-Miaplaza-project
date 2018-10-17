@@ -9,7 +9,7 @@ namespace DAL.Interfaces
 {
     public interface IRepository <TEntity, TIdentifier> where TEntity : class
     {
-        TEntity CreateAsync(TEntity entity);
+        TEntity Create(TEntity entity);
 
         TEntity Update(TEntity entity);
 

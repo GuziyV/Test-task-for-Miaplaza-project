@@ -18,7 +18,7 @@ namespace DAL.Repositories
             storeItems = new List<StoreItem>();
         }
 
-        public StoreItem CreateAsync(StoreItem entity)
+        public StoreItem Create(StoreItem entity)
         {
             storeItems.Add(entity);
             return entity;
