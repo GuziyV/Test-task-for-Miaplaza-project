@@ -8,7 +8,7 @@ namespace DAL.Models
 {
     public class StoreItem
     {
-        public StoreItem(string name, decimal pricePerItem, int count = 0)
+        public StoreItem(string name, decimal pricePerItem, uint count = 0)
         {
             Name = name;
             PricePerItem = pricePerItem;
@@ -19,6 +19,11 @@ namespace DAL.Models
 
         public decimal PricePerItem { get; set; }
 
-        public int Count { get; set; }
+        public uint Count { get; set; }
+
+        public override string ToString()
+        {
+            return String.Format("{0,-6} | {1,-9} | {2,-15:0.00}", Count, Name, PricePerItem);
+        }
     }
 }

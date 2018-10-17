@@ -18,7 +18,7 @@ namespace DAL.Repositories
             storeItems = new List<StoreItem>();
         }
 
-        public StoreItem CreateAsync(StoreItem entity)
+        public StoreItem Create(StoreItem entity)
         {
             storeItems.Add(entity);
             return entity;
@@ -26,7 +26,7 @@ namespace DAL.Repositories
 
         public bool TryDelete(string identifier)
         {
-            int index = storeItems.FindIndex(s => s.Name == identifier);
+            int index = storeItems.FindIndex(s => s.Name.ToLower() == identifier.ToLower());
             if(index < 0)
             {
                 return false;
@@ -43,12 +43,12 @@ namespace DAL.Repositories
 
         public StoreItem Get(string identifier)
         {
-            return storeItems.FirstOrDefault(s => s.Name == identifier);
+            return storeItems.FirstOrDefault(s => s.Name.ToLower() == identifier.ToLower());
         }
 
         public StoreItem Update(StoreItem entity)
         {
-            var searchItem = storeItems.FirstOrDefault(s => s.Name == entity.Name);
+            var searchItem = storeItems.FirstOrDefault(s => s.Name.ToLower() == entity.Name.ToLower());
             if(searchItem == null)
             {
                 throw new InvalidOperationException("Item with this name doesn't exist in store");
