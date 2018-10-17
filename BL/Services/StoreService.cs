@@ -28,9 +28,9 @@ namespace BL.Services
             Console.WriteLine("2. Add product(type 'addproduct' or 2)");
             Console.WriteLine("3. Add items(type 'incoming' or 3)");
             Console.WriteLine("4. Sale products(type 'sale' or 4)");
-            Console.WriteLine("5. Exit(type 'exit or 11')");
+            Console.WriteLine("5. Exit(type 'exit or 5')");
             string command = Console.ReadLine();
-            switch (command)
+            switch (command.Trim().ToLower())
             {
                 case "1":
                 case "inventory":
@@ -64,13 +64,19 @@ namespace BL.Services
 
         private void Sale()
         {
-            Console.WriteLine("Enter a list of items sold and their quantity (blank line to finish):");
+            if (repository.GetAll().Count == 0)
+            {
+                Console.WriteLine("You haven't yet added any products, please add items first(command 2)");
+                return;
+            }
+            Console.WriteLine("Enter a list of items sold and their quantity in format 'item: count' (blank line to finish):");
             string input;
             decimal sum = 0;
             while ((input = Console.ReadLine()) != string.Empty)
             {
-                string[] itemComponents = input.Split(' ');
-                string itemName = itemComponents[0].Trim(':');
+                string[] itemComponents = input.Split(new string[] { ": " }, StringSplitOptions.None);
+                string itemName = itemComponents[0];
+                string itemCount = itemComponents[1];
                 StoreItem old = repository.Get(itemName);
                 if (old == null)
                 {
@@ -78,53 +84,64 @@ namespace BL.Services
                 }
                 else
                 {
-                    uint numOfItemsToRemove = uint.Parse(itemComponents[1]);
-                    if (old.Count - numOfItemsToRemove < 0)
+                    uint numOfItemsToRemove = uint.Parse(itemCount);
+                    if (((int)old.Count - (int)numOfItemsToRemove) < 0)
                     {
                         throw new InvalidOperationException($"Not enough {itemName} in store");
                     }
-                    sum += old.Count * numOfItemsToRemove;
-                    old.Count -= uint.Parse(itemComponents[1]);
+                    sum += old.PricePerItem * numOfItemsToRemove;
+                    old.Count -= numOfItemsToRemove;
                 }
             }
+
             if(sum != 0)
             {
-                Console.WriteLine($"Total: {sum}");
+                Console.WriteLine($"Total price: {sum}$");
             }
         }
 
         private void AddProduct()
         {
-            Console.WriteLine("Name? ");
+            Console.Write("Name? ");
             string name = Console.ReadLine();
+            if (name == string.Empty)
+            {
+                throw new FormatException("Name can't be an empty string");
+            }
             var item = repository.Get(name);
             if(item != null)
             {
                 throw new InvalidOperationException("Item with this name aready exists!");
             }
-            Console.WriteLine("Price? ");
+            Console.Write("Price? ");
             decimal price = Decimal.Parse(Console.ReadLine());
 
-            StoreItem newItem = new StoreItem(name, price);
+            StoreItem newItem = new StoreItem(name.Trim(), price);
             repository.Create(newItem);          
         }
 
         private void Incoming()
         {
-            Console.WriteLine("Enter a list of incoming items and their quantity (blank line to finish):");
-            string input;
-            while((input =  Console.ReadLine()) != string.Empty)
+            if(repository.GetAll().Count == 0)
             {
-                string[] itemComponents = input.Split(' ');
-                string itemName = itemComponents[0].Trim(':');
-                StoreItem old = repository.Get(itemName);
+                Console.WriteLine("You haven't yet added any products, please add items first(command 2)");
+                return;
+            }
+            Console.WriteLine("Enter a list of incoming items and their quantity in format 'item: count' (blank line to finish):");
+            string input;
+            while((input = Console.ReadLine()) != string.Empty)
+            {
+                string[] itemComponents = input.Split(new string[] { ": " }, StringSplitOptions.None);
+                string itemName = itemComponents[0];
+                string itemCount = itemComponents[1];
+                StoreItem old = repository.Get(itemName); 
                 if (old == null)
                 {
                     throw new FormatException("Cant find item with this name, please add product first!");
                 }
                 else
                 {
-                    old.Count += uint.Parse(itemComponents[1]);
+                    old.Count += uint.Parse(itemCount);
                 }
             }
         }
