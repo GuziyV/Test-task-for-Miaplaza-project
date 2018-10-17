@@ -20,15 +20,15 @@ namespace Test_task_for_Miaplaza_project
                 }
                 catch (FormatException ex)
                 {
-                    Console.WriteLine("**{0}**", ex.Message);
+                    Console.WriteLine($"**{ex.Message}**");
                 }
                 catch (InvalidOperationException ex)
                 {
-                    Console.WriteLine("**{0}**", ex.Message);
+                    Console.WriteLine($"**{ex.Message}**");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("**{0}**", ex.Message);
+                    Console.WriteLine($"**{ex.Message}**");
                 }
                 finally
                 {
