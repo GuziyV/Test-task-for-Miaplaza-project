@@ -23,7 +23,7 @@ namespace DAL.Models
 
         public override string ToString()
         {
-            return String.Format("{0,-3}|{1,-10}|{2:0.00,-5}", Count, Name, PricePerItem);
+            return String.Format("{0,-6} | {1,-9} | {2,-15:0.00}", Count, Name, PricePerItem);
         }
     }
 }
