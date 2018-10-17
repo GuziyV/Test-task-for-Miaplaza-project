@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test task for Miaplaza project", "Test task for Miaplaza project\Test task for Miaplaza project.csproj", "{A14D6903-8362-4ADD-ABCA-C688463D0D02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "Test task for Miaplaza project\PL.csproj", "{A14D6903-8362-4ADD-ABCA-C688463D0D02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{8EA3AF32-B933-44DE-B4C6-56ECB8214F94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{486F5EB1-942A-47C9-B533-1A46190E341D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{A14D6903-8362-4ADD-ABCA-C688463D0D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A14D6903-8362-4ADD-ABCA-C688463D0D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A14D6903-8362-4ADD-ABCA-C688463D0D02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA3AF32-B933-44DE-B4C6-56ECB8214F94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA3AF32-B933-44DE-B4C6-56ECB8214F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA3AF32-B933-44DE-B4C6-56ECB8214F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA3AF32-B933-44DE-B4C6-56ECB8214F94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{486F5EB1-942A-47C9-B533-1A46190E341D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{486F5EB1-942A-47C9-B533-1A46190E341D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{486F5EB1-942A-47C9-B533-1A46190E341D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{486F5EB1-942A-47C9-B533-1A46190E341D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

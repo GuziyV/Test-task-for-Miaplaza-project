@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BL.Services
 {
-    class StoreService
+    public class StoreService
     {
         private readonly IRepository<StoreItem, string> repository;
 
@@ -66,6 +66,7 @@ namespace BL.Services
         {
             Console.WriteLine("Enter a list of items sold and their quantity (blank line to finish):");
             string input;
+            decimal sum = 0;
             while ((input = Console.ReadLine()) != string.Empty)
             {
                 string[] itemComponents = input.Split(' ');
@@ -82,8 +83,13 @@ namespace BL.Services
                     {
                         throw new InvalidOperationException($"Not enough {itemName} in store");
                     }
+                    sum += old.Count * numOfItemsToRemove;
                     old.Count -= uint.Parse(itemComponents[1]);
                 }
+            }
+            if(sum != 0)
+            {
+                Console.WriteLine($"Total: {sum}");
             }
         }
 
@@ -125,11 +131,16 @@ namespace BL.Services
 
         private void ShowInventory()
         {
-            Console.WriteLine(String.Format("{0,-3}|{1,-10}|{2,-15}", "Count", "Item", "Price per item"));
             var allItems = repository.GetAll();
+            if(allItems.Count == 0)
+            {
+                Console.WriteLine("Empty");
+                return;
+            }
+            Console.WriteLine(String.Format("{0,-6} | {1,-9} | {2,-15}", "Count", "Item", "Price per item"));
             foreach(var item in allItems)
             {
-                item.ToString();
+                Console.WriteLine(item.ToString());
             }
         }
     }
